@@ -4,8 +4,11 @@ import os
 from sklearn.svm import SVR
 from sklearn.grid_search import GridSearchCV
 
-from utils import CSVHandler
-from utils import Preprocessor
+from utils.CSVHandler import CSVHandler
+from utils.Preprocessor import Preprocessor
+from utils.Visualizer import Visualizer
+from utils.Logger import Logger
+
 
 """
 File paths
@@ -25,55 +28,55 @@ except:
 
 # main loop
 def main():
-    csv_handler = CSVHandler.CSVHandler(data_dir)
-    preprocessor = Preprocessor.Preprocessor()
+    csv_handler = CSVHandler(data_dir)
+    preprocessor = Preprocessor()
+    visualizer = Visualizer()
+    logger = Logger()
 
     # print "load train data and test data"
     try:
         train = csv_handler.load_csv(train_filename)
         test = csv_handler.load_csv(test_filename)
     except Exception as e:
-        print "Exception:"
-        print '  type     -> ', str(type(e))
-        print '  args     -> ', str(e.args)
-        print '  message  -> ', e.message
-        print '  e        -> ', str(e)
-        return 1
+        logger.show_exception(e)
 
     # print "preprocess the both data"
-    train_target = train["SalePrice"].values
+    t_train = train["SalePrice"].values
     train, test = preprocessor.preprocess(train, test, except_num=True)
+
+    # print "extract target column and feature column for both data"
+    x_train = train.values
+    x_test = test.values
 
     # print "save test ids"
     test_ids = test.index
 
-    # print "extract target column and feature column for both data"
-    train_feature = train.values
-    test_feature = test.values
-
-    # print "train"
-    tuned_parameters = [{'C': [100000, 1000000, 10000000, 100000000], 'epsilon': [1000000, 10000, 1000, 100, 10]}]
+    # print "design training"
+    tuned_parameters = [{'C': [1000, 10000, 100000], 'epsilon': [1000, 100, 10]}]
     reg = GridSearchCV(
         SVR(),
         tuned_parameters,
         cv=5
     )
-    reg.fit(train_feature, train_target)
 
-    for params, mean_score, all_scores in reg.grid_scores_:
-        print "{:.3f} (+/- {:.3f}) for {}".format(mean_score, all_scores.std() / 2, params)
+    # print "train"
+    reg.fit(x_train, t_train)
+    logger.show_training_result(reg)
 
-    print 'best parameter:', reg.best_params_
+    # print "prediction"
+    y_train = reg.predict(x_train).astype(float)
+    y_test = reg.predict(x_test).astype(float)
 
-    # print "test"
-    predict = reg.predict(test_feature).astype(float)
-
-    # save
-    output = zip(test_ids, predict)
+    # print "save"
+    output = zip(test_ids, y_test)
     csv_handler.save_csv(output)
 
-    # success
+    # print "show difference between true distribution and prediction"
+    visualizer.show_result(t_train, y_train)
+
+    # print "everything works well"
     return 0
+
 
 if __name__ == '__main__':
     sys.exit(main())
