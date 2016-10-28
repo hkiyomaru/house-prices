@@ -39,8 +39,7 @@ def main():
         return 1
 
     # print "preprocess the both data"
-    train = preprocessor.preprocess(train)
-    test = preprocessor.preprocess(test)
+    train, test = preprocessor.preprocess(train, test)
 
     # print "save test ids"
     test_ids = test.index
