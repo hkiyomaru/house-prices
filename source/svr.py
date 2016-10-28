@@ -1,6 +1,8 @@
 import sys
 import os
+
 from sklearn.svm import SVR
+from sklearn.grid_search import GridSearchCV
 
 from utils import CSVHandler
 from utils import Preprocessor
@@ -39,22 +41,32 @@ def main():
         return 1
 
     # print "preprocess the both data"
+    train_target = train["SalePrice"].values
     train, test = preprocessor.preprocess(train, test)
 
     # print "save test ids"
     test_ids = test.index
 
     # print "extract target column and feature column for both data"
-    train_target = train["SalePrice"].values
-    train_feature = train.drop("SalePrice", axis=1).values
+    train_feature = train.values
     test_feature = test.values
 
     # print "train"
-    svr = SVR(C=10000, epsilon=0.1)
-    svr.fit(train_feature, train_target)
+    tuned_parameters = [{'C': [1, 10, 100, 1000], 'epsilon': [1e-3, 1e-4, 1e-5]}]
+    reg = GridSearchCV(
+        SVR(),
+        tuned_parameters,
+        cv=5
+    )
+    reg.fit(train_feature, train_target)
+
+    for params, mean_score, all_scores in reg.grid_scores_:
+        print "{:.3f} (+/- {:.3f}) for {}".format(mean_score, all_scores.std() / 2, params)
+
+    print 'best parameter:', reg.best_params_
 
     # print "test"
-    predict = svr.predict(test_feature).astype(float)
+    predict = reg.predict(test_feature).astype(float)
 
     # save
     output = zip(test_ids, predict)
