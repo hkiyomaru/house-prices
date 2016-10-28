@@ -15,6 +15,10 @@ https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data
 
 Download train.csv and test.csv and save them in the data directory.
 
-## Train
+## Run
 
-## Test
+* Supprt Vector Regression
+
+```
+$ python svr.py
+```
