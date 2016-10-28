@@ -6,8 +6,19 @@ class Preprocessor():
     def __init__(self):
         pass
 
-    def preprocess(self, train, test):
+    def preprocess(self, train, test, except_num=False):
         all_data = pd.concat((train.drop('SalePrice', axis=1), test), axis=0)
+        all_data = all_data.fillna(all_data.mean())
+
+        # delete columns which have number type
+        if except_num:
+            for column in all_data.columns:
+                dtype = all_data[column].dtype
+                if dtype in ['float64', 'int64']:
+                    all_data = all_data.drop(column, axis=1)
+        else:
+            pass
+
         all_data = pd.get_dummies(all_data)
         all_data = all_data.fillna(all_data.mean())
         train = all_data[:train.shape[0]]

@@ -42,7 +42,7 @@ def main():
 
     # print "preprocess the both data"
     train_target = train["SalePrice"].values
-    train, test = preprocessor.preprocess(train, test)
+    train, test = preprocessor.preprocess(train, test, except_num=True)
 
     # print "save test ids"
     test_ids = test.index
@@ -52,7 +52,7 @@ def main():
     test_feature = test.values
 
     # print "train"
-    tuned_parameters = [{'C': [1, 10, 100, 1000], 'epsilon': [1e-3, 1e-4, 1e-5]}]
+    tuned_parameters = [{'C': [100000, 1000000, 10000000, 100000000], 'epsilon': [1000000, 10000, 1000, 100, 10]}]
     reg = GridSearchCV(
         SVR(),
         tuned_parameters,
