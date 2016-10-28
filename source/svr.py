@@ -1,4 +1,5 @@
 import sys
+import os
 from sklearn.svm import SVR
 
 from utils import CSVHandler
@@ -11,7 +12,16 @@ data_dir = '../data/'
 train_filename = 'train.csv'
 test_filename = 'test.csv'
 
+"""
+Make directory to save result
+"""
+try:
+    os.mkdir('./predict/')
+except:
+    pass
 
+
+# main loop
 def main():
     csv_handler = CSVHandler.CSVHandler(data_dir)
     preprocessor = Preprocessor.Preprocessor()
