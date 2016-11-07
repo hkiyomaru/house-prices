@@ -2,7 +2,7 @@
 
 ## Development Environment
 
-This is my development environment.
+This is my development environment. I have not make sure that this program works well in other environment.
 
 * OS: Ubuntu14.04
 * Language: Python3.5.2
@@ -15,11 +15,11 @@ https://www.kaggle.com/c/house-prices-advanced-regression-techniques/rules
 
 https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data
 
-Download __train.csv__ and __test.csv__ and save them in __the data directory__.
+Download __train.csv__ and __test.csv__ and save them in the __data__ directory.
 
 ## Install packages
 
-You have to install several packeges.
+You have to install several packeges. They are written in __requirements.txt__.
 
 ```
 $ pyvenv venv
@@ -34,7 +34,7 @@ Then, run the examples.
 * Linear Regression
 
 ```
-$ linear_regression.py
+$ python linear_regression.py
 ```
 
 * Supprt Vector Regression
@@ -51,8 +51,13 @@ $ python random_forest_regression.py
 
 ## What's next?
 
-* Tune Parameters: You have some examples and can tweak parameters very easily. It will help you to understand the behaviors of them.
+1. Tune parameters: You have some examples and can tweak their parameters very easily. It will help you to understand the behaviors of them.
 
-* Survey methods: After understanding the behaviors, let's survey the methods.
+2. Survey methods: After trying tuning the parameters, you'll understand the method in the behavior level. Then, let's survey the method in detail. It is very important to know how it works.
 
-* Try Other apploaches: It's time to try other methods. I'm very happy that you program excellent methods based on my scripts!
+3. Try other apploaches: It's time to try other methods. I'm very happy that you program nice methods based on my scripts.
+
+
+## LICENSE
+
+MIT License
