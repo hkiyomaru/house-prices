@@ -2,8 +2,10 @@
 
 ## Development Environment
 
+This is my development environment.
+
 * OS: Ubuntu14.04
-* Language: Python3
+* Language: Python3.5.2
 
 ## Rules
 
@@ -27,6 +29,8 @@ $ pip3 install -r requirements.txt
 
 ## Run
 
+Then, run the examples.
+
 * Linear Regression
 
 ```
@@ -39,8 +43,16 @@ $ linear_regression.py
 $ python support_vector_regression.py
 ```
 
-$ Random Forest Regression
+* Random Forest Regression
 
 ```
 $ python random_forest_regression.py
 ```
+
+## What's next?
+
+* Tune Parameters: You have some examples and can tweak parameters very easily. It will help you to understand the behaviors of them.
+
+* Survey methods: After understanding the behaviors, let's survey the methods.
+
+* Try Other apploaches: It's time to try other methods. I'm very happy that you program excellent methods based on my scripts!
