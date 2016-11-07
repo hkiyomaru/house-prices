@@ -4,7 +4,7 @@ import matplotlib
 from matplotlib import pyplot as plt
 
 
-class Visualizer():
+class Visualizer(object):
     def __init__(self):
         pass
 

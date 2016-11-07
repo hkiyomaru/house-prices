@@ -2,13 +2,13 @@ import numpy as np
 import pandas as pd
 
 
-class Preprocessor():
+class Preprocessor(object):
     def __init__(self):
         pass
 
     def preprocess(self, train, test, except_num=False):
         all_data = pd.concat((train.drop('SalePrice', axis=1), test), axis=0)
-        all_data = all_data.fillna(all_data.mean())
+        all_data = all_data.fillna(all_data.mean()) # fill NA and Nan
 
         # delete columns which have number type
         if except_num:
@@ -32,4 +32,4 @@ if __name__ == '__main__':
     train = csv_handler.load_csv('train.csv')
     test = csv_handler.load_csv('test.csv')
     train, test = preprocessor.preprocess(train, test)
-    print train, test
+    print(train, test)
