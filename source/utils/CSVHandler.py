@@ -10,8 +10,8 @@ class CSVHandler(object):
         filepath = os.path.join(self.data_dir, filename)
         return pd.read_csv(filepath, index_col='Id')
 
-    def save_csv(self, output):
-        predictions_file = open('predict/output.csv', 'w')
+    def save_csv(self, output, model_name):
+        predictions_file = open('predict/{0}_output.csv'.format(model_name), 'w')
         open_file_object = csv.writer(predictions_file)
         open_file_object.writerow(['Id','SalePrice'])
         open_file_object.writerows(output)
