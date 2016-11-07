@@ -3,7 +3,7 @@
 ## Development Environment
 
 * OS: Ubuntu14.04
-* Language: Python2.7.9
+* Language: Python3
 
 ## Rules
 
@@ -13,12 +13,34 @@ https://www.kaggle.com/c/house-prices-advanced-regression-techniques/rules
 
 https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data
 
-Download train.csv and test.csv and save them in the data directory.
+Download __train.csv__ and __test.csv__ and save them in __the data directory__.
+
+## Install packages
+
+You have to install several packeges.
+
+```
+$ pyvenv venv
+$ . venv/bin/activate
+$ pip3 install -r requirements.txt  
+```
 
 ## Run
+
+* Linear Regression
+
+```
+$ linear_regression.py
+```
 
 * Supprt Vector Regression
 
 ```
-$ python svr.py
+$ python support_vector_regression.py
+```
+
+$ Random Forest Regression
+
+```
+$ python random_forest_regression.py
 ```
