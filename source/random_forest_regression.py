@@ -64,8 +64,8 @@ def main():
     logger.show_training_result(reg)
 
     # print "prediction"
-    y_train = reg.predict(x_train).astype(float)
-    y_test = reg.predict(x_test).astype(float)
+    y_train = reg.predict(x_train).astype(int)
+    y_test = reg.predict(x_test).astype(int)
 
     # print "save"
     output = zip(test_ids, y_test)
