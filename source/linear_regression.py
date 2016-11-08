@@ -6,7 +6,7 @@ from sklearn.grid_search import GridSearchCV
 
 from utils.CSVHandler import CSVHandler
 from utils.Preprocessor import Preprocessor
-from utils.Visualizer import Visualizer
+# from utils.Visualizer import Visualizer
 from utils.Logger import Logger
 
 
@@ -72,7 +72,7 @@ def main():
     csv_handler.save_csv(output, 'linear_regression')
 
     # print "show difference between true distribution and prediction"
-    visualizer.show_result(t_train, y_train)
+    # visualizer.show_result(t_train, y_train)
 
     # print "everything works well"
     return 0
