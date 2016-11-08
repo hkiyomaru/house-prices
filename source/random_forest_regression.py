@@ -69,7 +69,7 @@ def main():
 
     # print "save"
     output = zip(test_ids, y_test)
-    csv_handler.save_csv(output, 'support_vector_regression')
+    csv_handler.save_csv(output, 'random_forest_regression')
 
     # print "show difference between true distribution and prediction"
     # visualizer.show_result(t_train, y_train)
