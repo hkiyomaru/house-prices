@@ -30,7 +30,7 @@ except:
 def main():
     csv_handler = CSVHandler(data_dir)
     preprocessor = Preprocessor()
-    visualizer = Visualizer()
+    # visualizer = Visualizer()
     logger = Logger()
 
     # print "load train data and test data"
